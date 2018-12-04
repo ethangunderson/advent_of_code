@@ -1,3 +1,5 @@
+require "rubygems/text"
+ld = Class.new.extend(Gem::Text).method(:levenshtein_distance)
 input = File.read('./input.txt')
 boxes = input.split("\n")
 exactly_two = 0
@@ -14,3 +16,9 @@ boxes.each do |box|
 end
 
 puts exactly_two * exactly_three
+
+boxes.each do |box_a|
+  boxes.each do |box_b|
+    puts box_a if ld.call(box_a, box_b) == 1
+  end
+end
